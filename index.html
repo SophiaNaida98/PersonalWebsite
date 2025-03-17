@@ -3,81 +3,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Portfolio</title>
+    <title>Andi Sophia Naida | Portfolio</title>
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/ohj1lbe.css"> 
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #F5F5DC; /* Beige background */
+        /* General Styles */
+        * {
             margin: 0;
             padding: 0;
-            color: #333;
-        }
-        header {
-            background-color: #E6D5B8; /* Light beige for header */
-            padding: 20px;
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        nav {
-            text-align: center;
-            margin: 20px 0;
-        }
-        nav a {
+            box-sizing: border-box;
             text-decoration: none;
-            color: #6B4F4F;
-            font-size: 18px;
-            margin: 0 15px;
-            font-weight: bold;
+            list-style: none;
+            transition: 0.3s ease-in-out;
         }
-        nav a:hover {
-            color: #3E2C2C;
+
+        body {
+            height: 100vh;
+            background: linear-gradient(to right, #fdfcf8, #f8f1e8);
+            color: #333;
+            font-family: "proxima-nova", sans-serif;
+            overflow-x: hidden;
         }
-        .container {
-            max-width: 900px;
-            margin: 50px auto;
-            text-align: center;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        h1, h2 {
+            font-family: "freight-big-pro", serif;
         }
-        .profile-img {
-            width: 150px;
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            width: 280px;
+            height: 100%;
+            background: #1c1c1c;
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+            transition: left 0.4s ease-in-out;
+            z-index: 1000;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar img {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
+        }
+
+        .sidebar h2 {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .sidebar p {
+            font-size: 14px;
+            color: #c0c0c0;
+            text-align: center;
             margin-bottom: 20px;
         }
-        footer {
-            background-color: #E6D5B8;
+
+        .nav-links {
+            width: 100%;
+            margin-top: 30px;
             text-align: center;
-            padding: 10px;
+        }
+
+        .nav-links a {
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px;
+            color: white;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Toggle Button */
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #1c1c1c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+            font-size: 20px;
+            z-index: 1100;
+        }
+
+        .toggle-btn:hover {
+            background: #333;
+        }
+
+        /* Overlay Effect */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 900;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 50px;
+            width: 100%;
+            transition: margin-left 0.4s ease-in-out;
+        }
+
+        .hero {
+            max-width: 850px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Call-to-Action Button */
+        .cta {
+            display: inline-block;
+            background: #1c1c1c;
+            color: white;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .cta:hover {
+            background: #333;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
             position: fixed;
             bottom: 0;
             width: 100%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 12px;
             font-size: 14px;
+            box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.05);
         }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .toggle-btn {
+                left: 20px;
+            }
+
+            .sidebar {
+                left: -100%;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+        }
+
     </style>
 </head>
 <body>
 
-    <header>Your Name</header>
+    <!-- Overlay for Sidebar -->
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Projects</a>
-        <a href="#">Contact</a>
-    </nav>
+    <!-- Toggle Button -->
+    <button class="toggle-btn" onclick="toggleSidebar()">&#9776;</button>
 
-    <div class="container">
-        <img src="profile.jpg" alt="Your Profile Picture" class="profile-img">
-        <h1>Welcome to My Portfolio</h1>
-        <p>Hello! I'm Sophia Naida, a Marketing Graduate. I specialize in **TBC**. Explore my work and feel free to connect with me.</p>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <img src="profile_picture.jpg" alt="Andi Sophia Profile Picture">
+        <h2>Andi Sophia</h2>
+        <p>Creative Professional | Passionate about Innovation</p>
+
+        <div class="nav-links">
+            <a href="index.html" onclick="toggleSidebar()">Home</a>
+            <a href="about.html" onclick="toggleSidebar()">About</a>
+            <a href="projects.html" onclick="toggleSidebar()">Projects</a>
+            <a href="#" onclick="toggleSidebar()">Contact</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="hero">
+            <h1>Welcome to My Portfolio</h1>
+            <p>I'm Andi Sophia Naida, a marketing and digital strategy enthusiast. I specialize in crafting engaging experiences and innovative campaigns.</p>
+            <a href="projects.html" class="cta">View My Work</a>
+        </div>
     </div>
 
     <footer>
-        &copy; 2025 Your Name. All Rights Reserved.
+        &copy; 2025 Andi Sophia. All Rights Reserved.
     </footer>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            const overlay = document.getElementById("overlay");
+            sidebar.classList.toggle("open");
+            overlay.classList.toggle("show");
+        }
+    </script>
 
 </body>
 </html>

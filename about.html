@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Andi Sophia</title>
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/ohj1lbe.css"> 
+
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            list-style: none;
+            transition: 0.3s ease-in-out;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background: linear-gradient(to right, #fdfcf8, #f8f1e8);
+            color: #333;
+            font-family: "proxima-nova", sans-serif;
+        }
+
+        h1, h2 {
+            font-family: "freight-big-pro", serif;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: #1c1c1c;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 0 15px 15px 0;
+            color: white;
+            transition: width 0.4s ease-in-out;
+            overflow: hidden;
+        }
+
+        .sidebar.collapsed {
+            width: 80px;
+            padding: 20px;
+        }
+
+        .sidebar.collapsed h2,
+        .sidebar.collapsed p,
+        .sidebar.collapsed .nav-links a {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .sidebar img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .sidebar.collapsed img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .nav-links {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .nav-links a {
+            display: block;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 12px;
+            color: white;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Toggle Button */
+        .toggle-btn {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: #1c1c1c;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .toggle-btn:hover {
+            background: #333;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 50px;
+            transition: margin-left 0.4s ease-in-out;
+        }
+
+        .collapsed + .main-content {
+            margin-left: -200px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <button class="toggle-btn" onclick="toggleSidebar()">&#9776;</button>
+        <img src="profile_picture.jpg" alt="Andi Sophia Profile Picture">
+        <h2>Andi Sophia</h2>
+        <p>Creative Professional | Passionate about Innovation</p>
+
+        <div class="nav-links">
+            <a href="index.html" onclick="hideSidebar()">Home</a>
+            <a href="about.html" onclick="hideSidebar()">About</a>
+            <a href="projects.html" onclick="hideSidebar()">Projects</a>
+            <a href="#" onclick="hideSidebar()">Contact</a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <div class="container">
+            <h1>About Me</h1>
+            <p>I am passionate about continuous learning, adapting to new challenges, and persevering through obstacles. My journey in marketing and creative fields has been driven by curiosity and innovation.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("collapsed");
+        }
+
+        function hideSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.classList.add("collapsed");
+        }
+    </script>
+
+</body>
+</html>
